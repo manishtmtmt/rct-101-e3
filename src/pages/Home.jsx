@@ -1,7 +1,15 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import Products from "../components/Products/Products";
+import { AuthContext } from "../context/AuthContext";
+import Login from "./Login";
 
 const Home = () => {
-  return <div>{/* Code here */}</div>;
+  const {isAuth} = useContext(AuthContext)
+
+  return <div>{
+    isAuth ? <Products /> : <Login />
+    }</div>;
 };
 
 export default Home;
