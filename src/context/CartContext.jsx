@@ -6,21 +6,24 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (id) => {
+    let isPresent = cart.some((d) => d.productId === id);
     const newCart = {
       productId: id,
       count: 1,
     };
-    fetch("http://localhost:8080/cartItems", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ ...newCart }),
-    })
-      .then((r) => r.json())
-      .then((res) => {
-        setCart([...cart, res]);
-      });
+    if (!isPresent) {
+      fetch("http://localhost:8080/cartItems", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ ...newCart }),
+      })
+        .then((r) => r.json())
+        .then((res) => {
+          setCart([...cart, res]);
+        });
+    }
   };
 
   return (
