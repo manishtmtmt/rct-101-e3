@@ -26,8 +26,13 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const handleRemove = (id) => {
+    let newCart = cart.filter((d)=> d.productId !== id)
+    setCart(newCart)
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, handleRemove }}>
       {children}
     </CartContext.Provider>
   );

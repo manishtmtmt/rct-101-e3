@@ -3,7 +3,7 @@ import { CartContext } from "../../../context/CartContext";
 
 const Product = ({product}) => {
   // Note: this id should come from api
-  const { cart, addToCart } = useContext(CartContext)
+  const { cart, addToCart, handleRemove } = useContext(CartContext)
 
   return (
     <div data-cy={`product-${product.id}`}>
@@ -14,11 +14,11 @@ const Product = ({product}) => {
         <button data-cy="product-increment-cart-item-count-button">+</button>
         <span data-cy="product-count">
           {
-            // Count here from CartItems
+            //cart.count
           }
         </span>
         <button data-cy="product-decrement-cart-item-count-button">-</button>
-        <button data-cy="product-remove-cart-item-button">Remove from cart</button>
+        <button onClick={()=>handleRemove(product.id)} data-cy="product-remove-cart-item-button">Remove from cart</button>
       </div>
     </div>
   );
