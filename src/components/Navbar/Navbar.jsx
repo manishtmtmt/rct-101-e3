@@ -15,7 +15,7 @@ const Navbar = () => {
       .then((res) => {
         setCart(res);
       });
-  }, []);
+  }, [cart]);
 
   const handleOnClick = () => {
     if (isAuth) {
